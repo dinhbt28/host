@@ -19,9 +19,6 @@ const App = () => {
             if (authData.isLoading) {
               return <SplashScreen />;
             }
-
-            console.log('isSignout', authData.isSignout);
-
             return (
               <NavigationContainer
                 onReady={() => RNBootSplash.hide({ fade: true })}>
