@@ -1,6 +1,7 @@
 import path from 'path';
 import TerserPlugin from 'terser-webpack-plugin';
 import * as Repack from '@callstack/repack';
+import { getSharedDependencies } from 'super-app-dependencies';
 
 export default env => {
   const {
@@ -95,7 +96,7 @@ export default env => {
       path: path.join(dirname, 'build/generated', platform),
       filename: 'index.bundle',
       chunkFilename: '[name].chunk.bundle',
-      publicPath: Repack.getPublicPath({ platform, devServer }),
+      publicPath: Repack.getPublicPath({platform, devServer}),
     },
     /**
      * Configures optimization of the built bundle.
@@ -219,53 +220,7 @@ export default env => {
       }),
       new Repack.plugins.ModuleFederationPlugin({
         name: 'host',
-        shared: {
-          react: {
-            singleton: true,
-            eager: true,
-            requiredVersion: '18.2.0',
-          },
-          'react-native': {
-            singleton: true,
-            eager: true,
-            requiredVersion: '0.72.0',
-          },
-          '@react-native-async-storage/async-storage': {
-            singleton: true,
-            eager: true,
-            requiredVersion: '1.21.0',
-          },
-          '@react-navigation/native-stack': {
-            singleton: true,
-            eager: true,
-            requiredVersion: '6.9.17',
-          },
-          '@react-navigation/native': {
-            singleton: true,
-            eager: true,
-            requiredVersion: '6.1.9',
-          },
-          'react-native-paper': {
-            singleton: true,
-            eager: true,
-            requiredVersion: '5.11.4',
-          },
-          'react-native-screens': {
-            singleton: true,
-            eager: true,
-            requiredVersion: '3.29.0',
-          },
-          'react-native-bootsplash': {
-            singleton: true,
-            eager: true,
-            requiredVersion: '5.1.4',
-          },
-          'react-native-safe-area-context': {
-            singleton: true,
-            eager: true,
-            requiredVersion: '4.8.1',
-          },
-        },
+        shared: getSharedDependencies({ eager: true }),
       }),
     ],
   };
