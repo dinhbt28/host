@@ -1,9 +1,9 @@
-import {AppRegistry, Platform} from 'react-native';
-import {ScriptManager, Federated, Script} from '@callstack/repack/client';
+import { AppRegistry, Platform } from 'react-native';
+import { ScriptManager, Federated, Script } from '@callstack/repack/client';
 
 import App from './src/App';
 import appJson from './app.json';
-import {version} from './package.json';
+import { version } from './package.json';
 
 ScriptManager.shared.addResolver(async (scriptId, caller) => {
   const resolveURL = Federated.createURLResolver({
