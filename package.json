@@ -7,7 +7,7 @@
     "ios": "react-native run-ios --no-packager",
     "lint": "eslint .",
     "start": "react-native webpack-start",
-    "start:standalone": "STANDALONE=1 react-native webpack-start --host 127.0.0.1",
+    "start:standalone": "STANDALONE=1 react-native webpack-start --host 127.0.0.1 --port 8081",
     "test": "jest",
     "pods": "(cd ios && bundle install && bundle exec pod install)",
     "pods:update": "(cd ios && bundle exec pod update)",

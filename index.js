@@ -4,23 +4,12 @@ import { ScriptManager, Federated, Script } from '@callstack/repack/client';
 import App from './src/App';
 import appJson from './app.json';
 import { version } from './package.json';
-
-const container = {
-  ios: {
-    '0.0.1': {
-      auth: 'https://github.com/thiendinh1995/auth/releases/download/auth-ios@0.0.1/[name][ext]',
-    },
-  },
-  android: {
-    '0.0.1': {
-      auth: 'https://github.com/thiendinh1995/auth/releases/download/auth-android@0.0.2/[name][ext]',
-    },
-  },
-};
+import { getContainer } from '@/utils/container';
 
 ScriptManager.shared.addResolver(async (scriptId, caller) => {
+  console.log(getContainer(Platform.OS, version));
   const resolveURL = Federated.createURLResolver({
-    containers: container[Platform.OS][version], // TODO fetch api app management
+    containers: getContainer(Platform.OS, version), // TODO fetch api app management
   });
 
   let url;
@@ -38,9 +27,9 @@ ScriptManager.shared.addResolver(async (scriptId, caller) => {
     url,
     cache: !__DEV__,
     query: {
-      platform: Platform.OS, // only needed in development
+      platform: Platform.OS,
     },
-    verifyScriptSignature: __DEV__ ? 'off' : 'strict',
+    verifyScriptSignature: 'off',
   };
 });
 

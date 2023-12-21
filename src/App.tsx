@@ -9,6 +9,10 @@ const AuthProvider = React.lazy(() =>
   Federated.importModule('auth', './AuthProvider'),
 );
 
+const SignInScreen = React.lazy(() =>
+  Federated.importModule('auth', './SignInScreen'),
+);
+
 const App = () => {
   return (
     <ErrorBoundary name="AuthProvider">
@@ -18,6 +22,15 @@ const App = () => {
             if (authData.isLoading) {
               return <SplashScreen />;
             }
+
+            if (authData.isSignout) {
+              return (
+                <React.Suspense fallback={<SplashScreen />}>
+                  <SignInScreen />
+                </React.Suspense>
+              );
+            }
+
             return (
               <NavigationContainer>
                 <MainNavigator />
