@@ -5,9 +5,22 @@ import App from './src/App';
 import appJson from './app.json';
 import { version } from './package.json';
 
+const container = {
+  ios: {
+    '0.0.1': {
+      auth: 'https://github.com/thiendinh1995/auth/releases/download/auth-ios@0.0.1/[name][ext]',
+    },
+  },
+  android: {
+    '0.0.1': {
+      auth: 'https://github.com/thiendinh1995/auth/releases/download/auth-android@0.0.2/[name][ext]',
+    },
+  },
+};
+
 ScriptManager.shared.addResolver(async (scriptId, caller) => {
   const resolveURL = Federated.createURLResolver({
-    containers: appJson[Platform.OS][version], // TODO fetch api app management
+    containers: container[Platform.OS][version], // TODO fetch api app management
   });
 
   let url;

@@ -2,8 +2,22 @@ import path from 'path';
 import TerserPlugin from 'terser-webpack-plugin';
 import * as Repack from '@callstack/repack';
 import { getSharedDependencies } from 'super-app-dependencies';
+/**
+ * More documentation, installation, usage, motivation and differences with Metro is available at:
+ * https://github.com/callstack/repack/blob/main/README.md
+ *
+ * The API documentation for the functions and plugins used in this file is available at:
+ * https://re-pack.netlify.app/
+ */
 
-export default env => {
+/**
+ * Webpack configuration.
+ * You can also export a static object or a function returning a Promise.
+ *
+ * @param env Environment options passed from either Webpack CLI or React Native CLI
+ *            when running with `react-native start/bundle`.
+ */
+export default (env) => {
   const {
     mode = 'development',
     context = Repack.getDirname(import.meta.url),
@@ -23,7 +37,7 @@ export default env => {
     throw new Error('Missing platform');
   }
 
-  /**
+    /**
    * Using Module Federation might require disabling hmr.
    * Uncomment below to set `devServer.hmr` to `false`.
    *
@@ -136,11 +150,12 @@ export default env => {
         {
           test: /\.[jt]sx?$/,
           include: [
-            /node_modules(.*[/\\])+react/,
+            /node_modules(.*[/\\])+react\//,
+            /node_modules(.*[/\\])+react-native/,
             /node_modules(.*[/\\])+@react-native/,
             /node_modules(.*[/\\])+@react-navigation/,
             /node_modules(.*[/\\])+@react-native-community/,
-            /node_modules(.*[/\\])+@expo/,
+            /node_modules(.*[/\\])+expo/,
             /node_modules(.*[/\\])+react-freeze/,
             /node_modules(.*[/\\])+pretty-format/,
             /node_modules(.*[/\\])+metro/,

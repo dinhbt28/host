@@ -1,14 +1,4 @@
 {
   "name": "host",
-  "displayName": "host",
-  "ios": {
-    "0.0.1": {
-      "auth": "https://github.com/thiendinh1995/auth/releases/download/auth-ios@0.0.2/[name][ext]"
-    }
-  },
-  "android": {
-    "0.0.1": {
-      "auth": "https://github.com/thiendinh1995/auth/releases/download/auth-android@0.0.2/[name][ext]"
-    }
-  }
+  "displayName": "host"
 }
