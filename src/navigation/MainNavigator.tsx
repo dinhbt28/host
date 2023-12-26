@@ -1,12 +1,10 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import HomeScreen from '@screens/Home';
-import ProfileScreen from '@screens/Profile';
+import BottomTabNavigator from './BottomTabNavigator';
 
 export type MainStackParamList = {
-  Profile: undefined;
-  Home: undefined;
+  BottomTab: undefined;
 };
 
 const Main = createNativeStackNavigator<MainStackParamList>();
@@ -16,9 +14,9 @@ const MainNavigator = () => {
     <Main.Navigator
       screenOptions={{
         headerShown: false,
-      }}>
-      <Main.Screen name="Home" component={HomeScreen} />
-      <Main.Screen name="Profile" component={ProfileScreen} />
+      }}
+      >
+      <Main.Screen name="BottomTab" component={BottomTabNavigator} />
     </Main.Navigator>
   );
 };

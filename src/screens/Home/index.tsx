@@ -48,7 +48,7 @@ function Section({ children, title }: SectionProps): React.JSX.Element {
   );
 }
 
-function Home(): React.JSX.Element {
+const Home: React.FC = () => {
   const isDarkMode = useColorScheme() === 'dark';
 
   const backgroundStyle = {

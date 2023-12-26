@@ -5,7 +5,6 @@ import { NavBar } from '@/components';
 
 export type HomeStackParamList = {
   Home: undefined;
-  Upcoming: undefined;
 };
 
 const Home = createNativeStackNavigator<HomeStackParamList>();

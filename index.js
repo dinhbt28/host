@@ -1,13 +1,14 @@
 import { AppRegistry, Platform } from 'react-native';
 import { ScriptManager, Federated, Script } from '@callstack/repack/client';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import App from './src/App';
 import appJson from './app.json';
 import { version } from './package.json';
 import { getContainer } from '@/utils/container';
 
+ScriptManager.shared.setStorage(AsyncStorage);
 ScriptManager.shared.addResolver(async (scriptId, caller) => {
-  console.log(getContainer(Platform.OS, version));
   const resolveURL = Federated.createURLResolver({
     containers: getContainer(Platform.OS, version), // TODO fetch api app management
   });
